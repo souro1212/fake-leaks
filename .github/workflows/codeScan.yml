@@ -1,0 +1,19 @@
+name: Secure Code Review
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  review:
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: DevSecOps-AppSec/ai-secure-code-review-action@v1.1
+        with:
+          openai_api_key: ${{ secrets.OPENAI_API_KEY }}
+          model: gpt-4o-mini
+          max_files: "20"
+          max_lines: "1000"
+          time_budget_seconds: "90"
