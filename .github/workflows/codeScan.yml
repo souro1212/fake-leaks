@@ -5,15 +5,15 @@ on:
 
 jobs:
   review:
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       pull-requests: write
-    runs-on: ubuntu-latest
     steps:
-      - uses: DevSecOps-AppSec/ai-secure-code-review-action@v1.1
+      - uses: DevSecOps-AppSec/ai-secure-code-review-action@main
         with:
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
           model: gpt-4o-mini
-          max_files: "20"
-          max_lines: "1000"
-          time_budget_seconds: "90"
+          time_budget_seconds: 90
+          max_files: 20
+          max_lines: 1000
